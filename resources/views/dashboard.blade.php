@@ -42,11 +42,35 @@
 
            <!-- Table row -->
            <div class="row">
-             <div class="col-12 table-responsive">
-              
-             </div>
-             <!-- /.col -->
-           </div>
+            <div class="col-12 table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Company</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <?php $no = 1; ?>
+                  @foreach ($employees as $employee)    
+                  <tr>
+                    <td>{{$no++}}</td>
+                    <td>{{$employee->first_name}}</td>
+                    <td>{{$employee->last_name}}</td>
+                    <td>{{$employee->name}}</td>
+                    <td>{{$employee->email}}</td>
+                    <td>{{$employee->phone}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+            <!-- /.col -->
+          </div>
            <!-- /.row -->
 
   

@@ -47,11 +47,12 @@
                   <table class="table table-striped">
                     <thead>
                     <tr>
-                      <th>Qty</th>
-                      <th>Product</th>
-                      <th>Serial #</th>
-                      <th>Description</th>
-                      <th>Subtotal</th>
+                      <th>No</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Company</th>
+                      <th>Email</th>
+                      <th>Phone</th>
                     </tr>
                     </thead>
                     <tbody>

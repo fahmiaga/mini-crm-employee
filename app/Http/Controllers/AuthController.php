@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -14,8 +15,12 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($company)
     {
+        $check_company = Company::where('website', $company);
+        if (!$check_company) {
+            return abort(404);
+        }
         return view('auth.login');
     }
 
@@ -24,21 +29,28 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    public function login(Request $request, $subdomain)
     {
         $req = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
         $employee = Employee::where('email', $req['email'])->first();
+        $company = Company::where('website', $subdomain)->first();
+        // dd($company->id);
         if (!$employee) {
             return redirect()->back()->with('message', 'User not exist');
         } else {
-            if (!Hash::check($req['password'], $employee->password)) {
-                return redirect()->back()->with('message', 'Wrong password');
+
+            if ($employee->company !== $company->id) {
+                return redirect()->back()->with('message', 'You are not employee of this company');
             } else {
-                Session::put('user', $employee);
-                return redirect('dashboard');
+                if (!Hash::check($req['password'], $employee->password)) {
+                    return redirect()->back()->with('message', 'Wrong password');
+                } else {
+                    Session::put('user', $employee);
+                    return redirect('dashboard');
+                }
             }
         }
     }

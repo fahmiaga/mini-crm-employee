@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class EmployeeController extends Controller
 {
@@ -13,7 +15,15 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('layout.template');
+        $user = Session::get('user');
+        $employee = Employee::join('companies', 'companies.id', '=', 'employees.company')
+            ->where('company', $user->company)
+            ->get(['employees.*', 'companies.name']);
+        $data = [
+            'employees' => $employee
+        ];
+        // dd($employee);
+        return view('dashboard', $data);
     }
 
     /**
