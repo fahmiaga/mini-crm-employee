@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Invoice</title>
+  <title>@yield('title')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{asset('assets/adminLTE')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/adminLTE')}}/dist/css/adminlte.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -97,12 +98,14 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('assets/adminLTE')}}/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('assets/adminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('assets/adminLTE')}}/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('assets/adminLTE')}}/dist/js/demo.js"></script>
+  @stack('js')
+  {{-- <script src="{{asset('assets/adminLTE')}}/plugins/jquery/jquery.min.js"></script> --}}
+  <!-- Bootstrap 4 -->
+  {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> --}}
+  <script src="{{asset('assets/adminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="{{asset('assets/adminLTE')}}/dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{{asset('assets/adminLTE')}}/dist/js/demo.js"></script>
 </body>
 </html>

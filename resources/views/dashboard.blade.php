@@ -43,7 +43,7 @@
            <!-- Table row -->
            <div class="row">
             <div class="col-12 table-responsive">
-              <table class="table table-striped">
+              <table class="table table-striped" id="table1">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -86,4 +86,22 @@
  </section>
  <!-- /.content -->
 </div>
+
+@push('js')
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+      <script src="//cdn.datatables.net/plug-ins/1.10.25/pagination/input.js"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function() {
+    
+          var table =  $('#table1').DataTable({
+            responsive : true,
+            pagingType: "input",
+          });
+ 
+      });
+      </script>
+@endpush
+
 @endsection
